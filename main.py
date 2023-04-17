@@ -34,11 +34,11 @@ def is_bitlink(token, url):
 def main():
     load_dotenv()
     token = os.environ["BITLY_TOKEN"]
-    parse_url = urlparse(link)
-    parse_url = f"{parse_url.netloc}{parse_url.path}"
+    parsed_url = urlparse(link)
+    parsed_url = f"{parsed_url.netloc}{parsed_url.path}"
     try:
-        if is_bitlink(token, parse_url):
-            print(count_clicks(token, parse_url))
+        if is_bitlink(token, parsed_url):
+            print(count_clicks(token, parsed_url))
         else:
             print(shorten_link(token, link))
     except requests.exceptions.HTTPError as error:
